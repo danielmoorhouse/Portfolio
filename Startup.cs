@@ -14,14 +14,21 @@ using danielmoorhouse.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using danielmoorhouse.Services;
+using danielmoorhouse.Services.Implementations;
 
 namespace danielmoorhouse
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        
+        public IHostingEnvironment Environment { get; }
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
@@ -37,18 +44,42 @@ namespace danielmoorhouse
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddIdentity<User, ApplicationRole>(options => options.Stores.MaxLengthForKeys = 128)
+           .AddEntityFrameworkStores<ApplicationDbContext>()
+           .AddDefaultUI()
+           .AddDefaultTokenProviders();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite("Data Source=portfolio.db"));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                
+               
+             services.AddScoped<IBlog, BlogService>();
+             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                  .AddRazorPagesOptions(options =>
+        {
+            options.AllowAreas = true;
+            options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+            options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+            });
+                      services.ConfigureApplicationCookie(options =>
+       {
+           options.LoginPath = $"/Identity/Account/Login";
+           options.LogoutPath = $"/Identity/Account/Logout";
+           options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+       
+        });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext context,
+                        RoleManager<ApplicationRole> roleManager, UserManager<User> userManager)
         {
+             var supportedCultures = new[] { new CultureInfo("en-GB") };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-GB"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -73,6 +104,7 @@ namespace danielmoorhouse
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            DataSeeder.Initialize(context, userManager, roleManager).Wait();// seed here
         }
     }
 }

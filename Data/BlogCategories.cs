@@ -4,6 +4,5 @@ namespace danielmoorhouse.Data
     {
         public int Id { get; set; }
         public string CatName { get; set; }
-        public string CatDesc { get; set; }
     }
 }

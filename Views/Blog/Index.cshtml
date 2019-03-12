@@ -1,0 +1,57 @@
+@model IEnumerable<danielmoorhouse.Models.Blog.BlogListingModel>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        h4, h1, h5 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid body-content1">
+                <nav class="navbar navbar-expand-sm bg-transparent navbar-fixed-top">
+
+  <!-- Links -->
+  <ul class="navbar-nav navbar-right" style="float: right;">
+    <li class="nav-item">
+      <a asp-controller="Home" asp-action="Index" class="nav-link" title="Home"> <i class="fas fa-home"></i></a>
+    </li>
+   <li class="nav-item">
+        <a asp-controller="Projects" asp-action="Index" class="nav-link" title="Projects"><i class="fas fa-sitemap"></i></a>
+          </li>
+       <li class="nav-item">
+        <a asp-controller="Blog" asp-action="Index" class="nav-link" title="Blog"><i class="fas fa-blog"></i></a>
+          </li>
+                <li class="nav-item">
+        <a asp-controller="Home" asp-action="Contact" class="nav-link" title="Contact"> <i class="fas fa-fax"></i></a>
+          </li>
+  </ul>
+
+</nav>
+<h1 style="margin-top: 1em;">Blog Posts - danielmoorhouse</h1>
+<div class="row" style="margin-top: 3em;">
+    
+@foreach (var item in Model) {
+      <div class="col-md-3 text-center">
+               
+             <h4>@item.CategoryName</h4>   
+          
+               <h4>@item.BlogTitle</h4> 
+               <h5>@item.PostedOn.ToShortDateString()</h5> 
+               <br/>
+               <a class="btn btn-primary" asp-controller="Blog" asp-action="Detail" asp-route-id="@item"> <strong>Read</strong> <i class="fab fa-readme"></i></a>
+                </div>
+        
+}
+</div>
+
+  
+</body>
+</html>

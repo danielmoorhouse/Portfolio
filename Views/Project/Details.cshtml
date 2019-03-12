@@ -1,0 +1,57 @@
+@model danielmoorhouse.Data.Projects
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>Projects</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjDesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOnline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsOnline)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PImage1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PImage1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PImage2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PImage2)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>

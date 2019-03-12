@@ -1,6 +1,25 @@
 ﻿  
 
   <div class="container-fluid body-content">
+        <nav class="navbar navbar-expand-sm bg-transparent navbar-fixed-top">
+
+  <!-- Links -->
+  <ul class="navbar-nav navbar-right" style="float: right;">
+    <li class="nav-item">
+      <a asp-controller="Home" asp-action="Index" class="nav-link" title="Home"> <i class="fas fa-home"></i></a>
+    </li>
+   <li class="nav-item">
+        <a asp-controller="Projects" asp-action="Index" class="nav-link" title="Projects"><i class="fas fa-sitemap"></i></a>
+          </li>
+       <li class="nav-item">
+        <a asp-controller="Blog" asp-action="Index" class="nav-link" title="Blog"><i class="fas fa-blog"></i></a>
+          </li>
+                <li class="nav-item">
+        <a asp-controller="Home" asp-action="Contact" class="nav-link" title="Contact"> <i class="fas fa-fax"></i></a>
+          </li>
+  </ul>
+
+</nav>
   <div class="row">
   <div class="col-md-6 text-center">
 
@@ -36,8 +55,6 @@
 </div>
 
 </div>
-<a href="#">
-<i class="fas fa-cog" style="font-size: 20px; color: lightgrey; float: right; position: absolute; bottom: 0; padding: 10px; "></i>
-</a>
-</div>
+
+
 
