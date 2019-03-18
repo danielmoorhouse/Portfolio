@@ -58,8 +58,12 @@ namespace danielmoorhouse.Migrations
                     CategoryId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     PostedOn = table.Column<DateTime>(nullable: false),
-                    BlogContent = table.Column<string>(nullable: true),
-                    Image1Url = table.Column<string>(nullable: true)
+                    P1BlogContent = table.Column<string>(nullable: true),
+                    P1ImageUrl = table.Column<string>(nullable: true),
+                    P2BlogContent = table.Column<string>(nullable: true),
+                    P2ImageUrl = table.Column<string>(nullable: true),
+                    P3BlogContent = table.Column<string>(nullable: true),
+                    P3ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,13 +91,29 @@ namespace danielmoorhouse.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(nullable: true),
                     ProjDesc = table.Column<string>(nullable: true),
-                    IsOnline = table.Column<string>(nullable: true),
+                    GitRepo = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
                     PImage1 = table.Column<string>(nullable: true),
-                    PImage2 = table.Column<string>(nullable: true)
+                    PImage2 = table.Column<string>(nullable: true),
+                    PImage3 = table.Column<string>(nullable: true),
+                    PImage4 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Status",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    StatusName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Status", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -265,6 +285,9 @@ namespace danielmoorhouse.Migrations
 
             migrationBuilder.DropTable(
                 name: "Projects");
+
+            migrationBuilder.DropTable(
+                name: "Status");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

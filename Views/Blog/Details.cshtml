@@ -1,59 +1,35 @@
-@model danielmoorhouse.Data.BlogPost
+@model danielmoorhouse.Models.Blog.BlogDetailModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+<h2>Details</h2>
 
 <div>
-    <h4>BlogPost</h4>
+    <h4>BlogDetailModel</h4>
     <hr />
-    <dl class="dl-horizontal">
-    
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PostedOn)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PostedOn)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.BlogContent)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BlogContent)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Image1Url)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Image1Url)
-        </dd>
-    
-    </dl>
+  
+       
+ 
+            
+     
+            @Model.Title
+      
+            @Model.PostedOn
+       
+            
+            @Model.P1BlogContent
+            @Model.P2BlogContent
+            @Model.P3BlogContent
+
+      
+          <img src="@Model.P1ImageUrl" style="width: 100px;" />  
+          <img src="@Model.P2ImageUrl" style="width: 100px;" /> 
+          <img src="@Model.P3ImageUrl" style="width: 100px;" /> 
+     
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>
-</body>
-</html>

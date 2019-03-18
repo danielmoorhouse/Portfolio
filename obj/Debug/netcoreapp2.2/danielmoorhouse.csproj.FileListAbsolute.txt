@@ -39,7 +39,6 @@
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/Account/_ViewImports.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Areas/Identity/Pages/_ViewImports.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Blog/Delete.g.cshtml.cs
-/home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Blog/Details.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Project/Create.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Project/Delete.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Project/Details.g.cshtml.cs
@@ -47,3 +46,5 @@
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Project/Index.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Home/Admin.g.cshtml.cs
 /home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_LoginPartial.g.cshtml.cs
+/home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Blog/Details.g.cshtml.cs
+/home/daniel/ASPProjects/danielmoorhouse/obj/Debug/netcoreapp2.2/Razor/Views/Home/Cv.g.cshtml.cs

@@ -15,6 +15,7 @@ namespace danielmoorhouse.Data
         public DbSet<BlogPost> Blog { get; set; }
         public DbSet<Projects> Projects { get; set; }
         public DbSet<BlogCategories> Categories { get; set; }
+        public DbSet<Status> Status { get; set; }
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -9,14 +9,14 @@ using danielmoorhouse.Data;
 namespace danielmoorhouse.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190312222529_1")]
+    [Migration("20190318215311_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -150,11 +150,19 @@ namespace danielmoorhouse.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BlogContent");
-
                     b.Property<int>("CategoryId");
 
-                    b.Property<string>("Image1Url");
+                    b.Property<string>("P1BlogContent");
+
+                    b.Property<string>("P1ImageUrl");
+
+                    b.Property<string>("P2BlogContent");
+
+                    b.Property<string>("P2ImageUrl");
+
+                    b.Property<string>("P3BlogContent");
+
+                    b.Property<string>("P3ImageUrl");
 
                     b.Property<DateTime>("PostedOn");
 
@@ -170,19 +178,37 @@ namespace danielmoorhouse.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("IsOnline");
+                    b.Property<string>("GitRepo");
 
                     b.Property<string>("PImage1");
 
                     b.Property<string>("PImage2");
 
+                    b.Property<string>("PImage3");
+
+                    b.Property<string>("PImage4");
+
                     b.Property<string>("ProjDesc");
+
+                    b.Property<string>("Status");
 
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("danielmoorhouse.Data.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("StatusName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("danielmoorhouse.Data.User", b =>

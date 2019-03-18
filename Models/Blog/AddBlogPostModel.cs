@@ -12,9 +12,17 @@ namespace danielmoorhouse.Models.Blog
         public SelectList CatList { get; set; }
         public string Title { get; set; }
         public DateTime PostedOn { get; set; }
-        public string BlogContent { get; set; }
-        public string Image1Url { get; set; }
+       
+        
+        public string P1BlogContent { get; set; }
+        public string P1ImageUrl { get; set; }
         public IFormFile Image1 { get; set; }
+         public string P2BlogContent { get; set; }
+        public string P2ImageUrl { get; set; }
+        public IFormFile Image2 { get; set; }
+        public string P3BlogContent { get; set; }
+        public string P3ImageUrl { get; set; }
+        public IFormFile Image3 { get; set; }
       
     }
 }

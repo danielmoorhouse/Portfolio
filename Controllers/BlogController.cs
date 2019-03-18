@@ -30,13 +30,14 @@ namespace danielmoorhouse.Controllers
         // GET: Blog
         public IActionResult Index()
         {
-            var userName = _context.Users.Where(u => u.UserName == "danielmoorhouse").FirstOrDefault().UserName;
+            //var userName = _context.Users.Where(u => u.UserName == "danielmoorhouse").FirstOrDefault().UserName;
             var blogList =(from b in _context.Blog
             join Cat in _context.Categories on b.CategoryId equals Cat.Id
             //join User in _context.Users on b.AuthorId equals User.Id
             orderby b.PostedOn
             select new BlogListingModel {
-               
+                Id = b.Id,
+                P1Image1Url = b.P1ImageUrl,
                 CategoryName = Cat.CatName,
                 BlogTitle = b.Title,
                 PostedOn = b.PostedOn
@@ -47,21 +48,27 @@ namespace danielmoorhouse.Controllers
         }
 
         // GET: Blog/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var blogPost = await _context.Blog
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (blogPost == null)
-            {
-                return NotFound();
-            }
+            var blogPost = _blogService.GetById(id);
 
-            return View(blogPost);
+            var model = new BlogDetailModel()
+            {
+                Id = blogPost.Id,
+                Title = blogPost.Title,
+                P1BlogContent = blogPost.P1BlogContent,
+                P1ImageUrl = blogPost.P1ImageUrl,
+                P2BlogContent = blogPost.P2BlogContent,
+                P2ImageUrl = blogPost.P2ImageUrl,
+                 P3BlogContent= blogPost.P3BlogContent,
+                P3ImageUrl = blogPost.P3ImageUrl,
+                
+            };
+                
+        
+
+            return View(model);
         }
         [Authorize]
         // GET: Blog/Create
@@ -80,26 +87,35 @@ namespace danielmoorhouse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AddBlogPostModel model, IFormCollection Image)
+        public async Task<IActionResult> Create(AddBlogPostModel model,
+             IFormCollection Image1, IFormCollection Image2, IFormCollection Image3)
         {
               string storePath = "/images/blog/";
             var path = Path.Combine(
                      Directory.GetCurrentDirectory(), "wwwroot", "images", "blog",
-                     Image.Files[0].FileName);
+                     Image1.Files[0].FileName, Image2.Files[0].FileName, Image3.Files[0].FileName);
+                          
          
 
              using (var stream = new FileStream(path, FileMode.Create))
             {
-                await Image.Files[0].CopyToAsync(stream);
+                await Image1.Files[0].CopyToAsync(stream);
+                await Image2.Files[0].CopyToAsync(stream);
+                await Image3.Files[0].CopyToAsync(stream);
             
              }
+        
           var blog = new BlogPost 
           {
             
             CategoryId = model.CategoryId,
             Title = model.Title,
-            BlogContent = model.BlogContent,
-            Image1Url = storePath + model.Image1.FileName,
+              P1BlogContent = model.P1BlogContent,
+                P1ImageUrl = storePath + model.Image1.FileName,
+                P2BlogContent = model.P2BlogContent,
+                P2ImageUrl = storePath +  model.Image2.FileName,
+                 P3BlogContent = model.P3BlogContent,
+                P3ImageUrl = storePath +  model.Image3.FileName,
             PostedOn = DateTime.Now
           };
           await _blogService.Create(blog);

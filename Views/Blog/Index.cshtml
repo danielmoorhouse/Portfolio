@@ -16,37 +16,48 @@
 </head>
 <body>
     <div class="container-fluid body-content1">
-                <nav class="navbar navbar-expand-sm bg-transparent navbar-fixed-top">
+
+ <div class="row">
+      <div class="col-md-8"></div>
+      <div class="col-md-4">
+        <nav class="navbar navbar-expand-sm bg-transparent navbar-fixed-top">
 
   <!-- Links -->
-  <ul class="navbar-nav navbar-right" style="float: right;">
+  <ul class="navbar-nav" style="float: right; padding: 3%; padding-left: 20%;">
     <li class="nav-item">
-      <a asp-controller="Home" asp-action="Index" class="nav-link" title="Home"> <i class="fas fa-home"></i></a>
+      <a asp-controller="Home" asp-action="Index" class="nav-link" title="Home"> <i class="fas fa-home navItem"></i></a>
     </li>
    <li class="nav-item">
-        <a asp-controller="Projects" asp-action="Index" class="nav-link" title="Projects"><i class="fas fa-sitemap"></i></a>
+        <a asp-controller="Projects" asp-action="Index" class="nav-link" title="Projects"><i class="fas fa-sitemap navItem"></i></a>
           </li>
        <li class="nav-item">
-        <a asp-controller="Blog" asp-action="Index" class="nav-link" title="Blog"><i class="fas fa-blog"></i></a>
+        <a asp-controller="Blog" asp-action="Index" class="nav-link" title="Blog"><i class="fas fa-blog navItem"></i></a>
           </li>
                 <li class="nav-item">
-        <a asp-controller="Home" asp-action="Contact" class="nav-link" title="Contact"> <i class="fas fa-fax"></i></a>
+        <a asp-controller="Home" asp-action="Contact" class="nav-link" title="Contact"> <i class="fas fa-fax navItem"></i></a>
+          </li>
+                  <li class="nav-item">
+        <a asp-controller="Home" asp-action="Cv" class="nav-link" title="Curriculum Vitae">
+           <i class="fas fa-file navItem"></i>
+           </a>
           </li>
   </ul>
 
 </nav>
+</div>
+</div>
 <h1 style="margin-top: 1em;">Blog Posts - danielmoorhouse</h1>
 <div class="row" style="margin-top: 3em;">
     
 @foreach (var item in Model) {
       <div class="col-md-3 text-center">
-               
+               <img src="@item.P1Image1Url" style="width: 150px;" />
              <h4>@item.CategoryName</h4>   
           
                <h4>@item.BlogTitle</h4> 
                <h5>@item.PostedOn.ToShortDateString()</h5> 
                <br/>
-               <a class="btn btn-primary" asp-controller="Blog" asp-action="Detail" asp-route-id="@item"> <strong>Read</strong> <i class="fab fa-readme"></i></a>
+               <a class="btn btn-primary" asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id"> <strong>Read</strong> <i class="fab fa-readme"></i></a>
                 </div>
         
 }

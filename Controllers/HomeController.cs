@@ -18,6 +18,10 @@ namespace danielmoorhouse.Controllers
         {
             return View();
         }
+        public IActionResult Cv()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
